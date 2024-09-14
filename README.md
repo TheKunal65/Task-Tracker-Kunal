@@ -11,7 +11,6 @@ The Task Tracker app is designed for users to track their to-do lists effortless
 - **📱 Flutter**: The app is built using Flutter, allowing cross-platform functionality on both Android and iOS.
 - **💾 SQLite**: Used for local storage of tasks, providing persistent data without an internet connection.
 - **🔄 Provider**: State management solution for managing app state efficiently.
-- **🔧 Bloc**: Used for state management and ensuring smooth UI transitions.
 
 ## ✨ Core Features
 
