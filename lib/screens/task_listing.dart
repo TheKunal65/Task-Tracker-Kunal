@@ -2,6 +2,7 @@ import 'package:codearies_kunal_prajapat/screens/task_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'task_provider.dart';
+import 'package:intl/intl.dart';
 
 class TaskListScreen extends StatefulWidget {
   const TaskListScreen({super.key});
@@ -107,13 +108,16 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   itemCount: provider.tasks.length,
                   itemBuilder: (context, index) {
                     final task = provider.tasks[index];
+                    final dateFormat = DateFormat('dd/MM/yyyy');
+                    final timeFormat = DateFormat('HH:mm');
+                    DateTime dueDate = DateTime.parse(task.dueDate);
                     return ListTile(
                       title: Text(
                         task.name,
                         style: const TextStyle(fontFamily: 'Dela'),
                       ),
                       subtitle: Text(
-                        'Due: ${task.dueDate}',
+                        'Due: ${dateFormat.format(dueDate)} ${timeFormat.format(dueDate)}',
                         style: const TextStyle(
                             fontFamily: 'Outfit', fontWeight: FontWeight.bold),
                       ),
