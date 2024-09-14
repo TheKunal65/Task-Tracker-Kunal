@@ -37,4 +37,4 @@ The Task Tracker app is designed for users to track their to-do lists effortless
 ## 📥 APK Link
 
 You can download the APK file of Task Tracker App from the link below:
-[Download Task Tracker APK](https://github.com/TheKunal65/Task-Tracker-Kunal/releases/download/v1.0.0/Task.Tracker.Kunal.apk)
+[Download Task Tracker APK](https://github.com/TheKunal65/Task-Tracker-Kunal/releases/download/v1.0.0/Task-Track-Kunal.apk)
