@@ -63,7 +63,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
       appBar: AppBar(
         backgroundColor: Colors.purple,
         toolbarHeight: 70,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30),
             bottomRight: Radius.circular(30),
@@ -94,7 +94,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextField(
@@ -107,7 +107,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             GestureDetector(
@@ -116,8 +116,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                 child: TextField(
                   controller: TextEditingController(
                       text: _dueDate != null
-                          ? "${_dueDate!.toLocal()}".split(' ')[0] +
-                              ' ${_dueDate!.toLocal().hour}:${_dueDate!.toLocal().minute}'
+                          ? '${"${_dueDate!.toLocal()}".split(' ')[0]} ${_dueDate!.toLocal().hour}:${_dueDate!.toLocal().minute}'
                           : 'Select Due Date and Time'),
                   decoration: const InputDecoration(
                     labelText: 'Due Date',
@@ -130,7 +129,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             DropdownButtonFormField<String>(
@@ -148,7 +147,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                   value: category,
                   child: Text(
                     category,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Outfit',
                       fontWeight: FontWeight.bold,
                     ),
@@ -177,6 +176,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                   status: widget.task?.status ?? false,
                   category: _selectedCategory,
                 );
+                print('Task to save: ${task.toMap()}'); // Debug print
                 if (widget.task == null) {
                   Provider.of<TaskProvider>(context, listen: false)
                       .addTask(task);
@@ -188,7 +188,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
               },
               child: Text(
                 widget.task == null ? 'Add Task' : 'Update Task',
-                style: TextStyle(fontFamily: 'Dela'),
+                style: const TextStyle(fontFamily: 'Dela'),
               ),
             ),
           ],

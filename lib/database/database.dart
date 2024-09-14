@@ -19,15 +19,14 @@ class DatabaseHelper {
     String path = join(await getDatabasesPath(), 'tasks.db');
     return await openDatabase(
       path,
-      version: 2, // Increment the version if schema changes
+      version: 2,
       onCreate: (db, version) {
         return db.execute(
-          'CREATE TABLE tasks(id INTEGER PRIMARY KEY, name TEXT, description TEXT, dueDate TEXT, status INTEGER, category TEXT)',
+          'CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, dueDate TEXT, status INTEGER, category TEXT)',
         );
       },
       onUpgrade: (db, oldVersion, newVersion) async {
         if (oldVersion < newVersion) {
-          // Add new columns or tables as needed
           await db.execute('ALTER TABLE tasks ADD COLUMN category TEXT');
         }
       },
@@ -36,12 +35,23 @@ class DatabaseHelper {
 
   Future<void> insertTask(Task task) async {
     final db = await database;
-    await db?.insert('tasks', task.toMap());
+    await db?.insert(
+      'tasks',
+      {
+        'name': task.name,
+        'description': task.description,
+        'dueDate': task.dueDate,
+        'status': task.status ? 1 : 0,
+        'category': task.category,
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<List<Task>> getTasks() async {
     final db = await database;
-    final List<Map<String, dynamic>> maps = await db!.query('tasks', orderBy: 'dueDate');
+    final List<Map<String, dynamic>> maps =
+        await db!.query('tasks', orderBy: 'dueDate');
     return List.generate(maps.length, (i) {
       return Task.fromMap(maps[i]);
     });
@@ -49,7 +59,8 @@ class DatabaseHelper {
 
   Future<void> updateTask(Task task) async {
     final db = await database;
-    await db?.update('tasks', task.toMap(), where: 'id = ?', whereArgs: [task.id]);
+    await db
+        ?.update('tasks', task.toMap(), where: 'id = ?', whereArgs: [task.id]);
   }
 
   Future<void> deleteTask(int id) async {

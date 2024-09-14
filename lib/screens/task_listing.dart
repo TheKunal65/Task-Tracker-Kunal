@@ -29,7 +29,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
       appBar: AppBar(
         backgroundColor: Colors.purple,
         toolbarHeight: 70,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30),
             bottomRight: Radius.circular(30),
@@ -53,9 +53,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
               controller: _searchController,
               decoration: InputDecoration(
                 hintText: 'Search tasks',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                     fontFamily: 'Outfit', fontWeight: FontWeight.bold),
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
@@ -77,7 +77,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   value: category,
                   child: Text(
                     category,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Outfit', fontWeight: FontWeight.bold),
                   ),
                 );
@@ -100,7 +100,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
             child: Consumer<TaskProvider>(
               builder: (context, provider, child) {
                 if (provider.hasNoTasks) {
-                  return Center(child: Text("No such tasks"));
+                  return const Center(child: Text("No such tasks"));
                 }
 
                 return ListView.builder(
@@ -110,11 +110,11 @@ class _TaskListScreenState extends State<TaskListScreen> {
                     return ListTile(
                       title: Text(
                         task.name,
-                        style: TextStyle(fontFamily: 'Dela'),
+                        style: const TextStyle(fontFamily: 'Dela'),
                       ),
                       subtitle: Text(
                         'Due: ${task.dueDate}',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontFamily: 'Outfit', fontWeight: FontWeight.bold),
                       ),
                       trailing: Row(
@@ -176,7 +176,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => TaskFormScreen(),
+            builder: (context) => const TaskFormScreen(),
           ),
         ),
         child: const Icon(Icons.add),

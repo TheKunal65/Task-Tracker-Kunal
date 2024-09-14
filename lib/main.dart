@@ -9,7 +9,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => TaskProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Task Tracker Kunal',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: TaskListScreen(),
+      home: const TaskListScreen(),
     );
   }
 }
